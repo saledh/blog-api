@@ -4,14 +4,29 @@ public class UserResponse {
     private final long id;
     private final int tenantId;
     private final String email;
-    private final boolean isAdmin;
-    private final boolean isEditor;
+    private final Integer roleId;
 
-    public UserResponse(long id, int tenantId, String email, boolean isAdmin, boolean isEditor) {
+    public UserResponse(long id, int tenantId, String email, Integer roleId) {
         this.id = id;
         this.tenantId = tenantId;
         this.email = email;
-        this.isAdmin = isAdmin;
-        this.isEditor = isEditor;
+        this.roleId = roleId;
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public int getTenantId() {
+        return tenantId;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Integer getRoleId() {
+        return roleId;
+    }
+
 }

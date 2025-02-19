@@ -55,9 +55,9 @@ public final class JwtTokenUtil {
                 .expiration(expire)
                 .signWith(key, SignatureAlgorithm.HS256);
 
-        if (token.isAdmin()) {
+        if (token.getRoleId() == 2) {
             builder.claim(BLOG_ADMIN, "true");
-        } else if (token.isEditor()) {
+        } else if (token.getRoleId() == 1) {
             builder.claim(BLOG_EDITOR, "true");
         }
 
@@ -110,10 +110,19 @@ public final class JwtTokenUtil {
 
         long userId = getSubject(body, token);
         int tenantId = getTenantId(body, token);
-        boolean isAdmin = body.containsKey(BLOG_ADMIN) && "true".equals(body.get(BLOG_ADMIN));
-        boolean isEditor = body.containsKey(BLOG_ADMIN) && "true".equals(body.get(BLOG_EDITOR));
+        int roleId = 0;
+        if (body.containsKey(BLOG_ADMIN) && "true".equals(body.get(BLOG_ADMIN))) {
+            roleId = 2;
+        } else if (body.containsKey(BLOG_ADMIN) && "true".equals(body.get(BLOG_EDITOR))) {
+            roleId = 1;
+        }
 
-        return new JwtToken(userId, tenantId, isAdmin, isEditor);
+        return new JwtToken(userId, tenantId, roleId);
+    }
+
+    public static JwtToken getTokenFromBearer(String beareString) {
+        String token = beareString.trim().substring("Bearer ".length());
+        return JwtTokenUtil.decodeJwtToken(token);
     }
 
     private static long getSubject(final Claims body, final String token) {

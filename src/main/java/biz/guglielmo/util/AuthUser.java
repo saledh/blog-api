@@ -1,11 +1,11 @@
-package biz.guglielmo.jwt;
+package biz.guglielmo.util;
 
-public class JwtToken {
+public class AuthUser {
     private final long userId;
     private final int tenantId;
     private final int roleId;
 
-    public JwtToken(long userId, int tenantId, int roleId) {
+    public AuthUser(long userId, int tenantId, int roleId) {
         this.userId = userId;
         this.tenantId = tenantId;
         this.roleId = roleId;
@@ -22,5 +22,4 @@ public class JwtToken {
     public int getRoleId() {
         return roleId;
     }
-
 }

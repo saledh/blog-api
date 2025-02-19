@@ -1,7 +1,8 @@
 package biz.guglielmo;
 
 import biz.guglielmo.config.CorsFilterConfig;
-import biz.guglielmo.controller.AuthenticationController;
+import biz.guglielmo.controller.ArticleController_;
+import biz.guglielmo.controller.AuthenticationController_;
 import biz.guglielmo.filters.AuthFilter;
 import biz.guglielmo.filters.GsonFilter;
 import io.jooby.Jooby;
@@ -24,7 +25,8 @@ public class Main extends Jooby {
         use(new GsonFilter());
         use(new AuthFilter());
 
-        mvc(new AuthenticationController());
+        mvc(new AuthenticationController_());
+        mvc(new ArticleController_());
 
     }
 

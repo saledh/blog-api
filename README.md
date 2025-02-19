@@ -28,7 +28,9 @@ The Blog Manager API is a RESTful API built using the Jooby framework. It allows
 ### 2. Setup MySQL Database
 
 1. Install MySQL 8.x.
-1.1 Sfruttando un container Docker: 
+
+1.1 Sfruttando un container Docker:
+
 ```shell
 $ docker run --name mysql-8.4 -e MYSQL_ROOT_PASSWORD=Root1234! -p 3306:3306 -d mysql:8.4
 ```

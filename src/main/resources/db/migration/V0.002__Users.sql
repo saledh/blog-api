@@ -3,9 +3,12 @@ create table USER (
     TENANT_ID INT NOT NULL,
     EMAIL VARCHAR(50) NOT NULL,
     PWD VARCHAR(50) NOT NULL,
+    ROLE_ID INT,
 
     constraint USER_PK PRIMARY KEY(ID),
     constraint TENANT_FK_1 FOREIGN KEY(TENANT_ID) REFERENCES TENANT(ID)
 );
+
+create UNIQUE INDEX USER_I1 ON USER (TENANT_ID, EMAIL);
 
 insert into USER (TENANT_ID, EMAIL, PWD) values (1 ,'admin@guglielmo.biz', 'password');

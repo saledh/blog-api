@@ -5,16 +5,18 @@ public class UserDto {
     private Integer tenantId;
     private String email;
     private String password;
-    private boolean isAdmin;
-    private boolean isEditor;
+    private Integer roleId;
 
-    public UserDto(Long id, Integer tenantId, String email, String password, boolean isAdmin, boolean isEditor) {
+    public UserDto() {
+
+    }
+
+    public UserDto(Long id, Integer tenantId, String email, String password, Integer roleId) {
         this.id = id;
         this.tenantId = tenantId;
         this.email = email;
         this.password = password;
-        this.isAdmin = isAdmin;
-        this.isEditor = isEditor;
+        this.roleId = roleId;
     }
 
     public Long getId() {
@@ -49,20 +51,11 @@ public class UserDto {
         this.password = password;
     }
 
-    public boolean isAdmin() {
-        return isAdmin;
+    public Integer getRoleId() {
+        return roleId;
     }
 
-    public void setAdmin(boolean isAdmin) {
-        this.isAdmin = isAdmin;
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
     }
-
-    public boolean isEditor() {
-        return isEditor;
-    }
-
-    public void setEditor(boolean isEditor) {
-        this.isEditor = isEditor;
-    }
-
 }

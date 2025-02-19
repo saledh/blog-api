@@ -1,6 +1,5 @@
 package biz.guglielmo.service;
 
-import biz.guglielmo.db.model.UserDto;
 import biz.guglielmo.jwt.JwtToken;
 import biz.guglielmo.jwt.JwtTokenUtil;
 import biz.guglielmo.service.model.login.LoginRequest;
@@ -18,25 +17,14 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     public LoginResponse login(LoginRequest request) {
         String email = request.getEmail();
         String password = request.getPassword();
-        String role = request.getRole();
 
-        // TODO
-        UserDto user = userService.getUserByEmailAndPwd(email, password);
-        long userId = 1; // user.getId();
-        int tenantId = 1; // user.getTenant();
-        boolean isAdmin = true; // user.isAdmin();
-        boolean isEditor = false; // user.isEditor();
+        UserResponse userResponse = userService.getUserByEmailAndPwd(email, password);
+        long userId = userResponse.getId();
+        int tenantId = userResponse.getTenantId();
+        int roleId = userResponse.getRoleId();
 
-        JwtToken inputToken = new JwtToken(userId, tenantId, isAdmin, isEditor);
-        String auth = JwtTokenUtil.generateJwtToken(inputToken);
+        String auth = JwtTokenUtil.generateJwtToken(new JwtToken(userId, tenantId, roleId));
 
-        return new LoginResponse(auth);
+        return new LoginResponse(auth, userResponse);
     }
-
-    @Override
-    public UserResponse getUserById(long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getUserById'");
-    }
-
 }
