@@ -1,7 +1,5 @@
 package biz.guglielmo.controller;
 
-import biz.guglielmo.jwt.JwtToken;
-import biz.guglielmo.jwt.JwtTokenUtil;
 import biz.guglielmo.service.ArticleService;
 import biz.guglielmo.service.ArticleServiceImpl;
 import biz.guglielmo.service.model.article.GetArticleResponse;
